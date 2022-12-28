@@ -18,26 +18,26 @@
 #include QMK_KEYBOARD_H
 
 // Tap Dance keycodes
-enum td_keycodes {
-    BTN5_LAYER
-};
+// enum td_keycodes {
+//     BTN5_LAYER
+// };
 
 // Define a type containing as many tapdance states as you need
-typedef enum {
-    TD_NONE,
-    TD_UNKNOWN,
-    TD_SINGLE_TAP,
-    TD_SINGLE_HOLD,
-    TD_DOUBLE_SINGLE_TAP
-} td_state_t;
+// typedef enum {
+//     TD_NONE,
+//     TD_UNKNOWN,
+//     TD_SINGLE_TAP,
+//     TD_SINGLE_HOLD,
+//     TD_DOUBLE_SINGLE_TAP
+// } td_state_t;
 
 // Create a global instance of the tapdance state type
-static td_state_t td_state;
+// static td_state_t td_state;
 
 // Declare your tapdance functions:
 
 // Function to determine the current tapdance state
-td_state_t cur_dance(qk_tap_dance_state_t *state);
+// td_state_t cur_dance(qk_tap_dance_state_t *state);
 
 // `finished` and `reset` functions for each tapdance keycode
 void td_btnlayer_finished(qk_tap_dance_state_t *state, void *user_data);
@@ -57,54 +57,54 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 // Determine the tapdance state to return
-td_state_t cur_dance(qk_tap_dance_state_t *state) {
-    if (state->count == 1) {
-        if (state->interrupted || !state->pressed) return TD_SINGLE_TAP;
-        else return TD_SINGLE_HOLD;
-    }
+// td_state_t cur_dance(qk_tap_dance_state_t *state) {
+//     if (state->count == 1) {
+//         if (state->interrupted || !state->pressed) return TD_SINGLE_TAP;
+//         else return TD_SINGLE_HOLD;
+//     }
 
-    if (state->count == 2) return TD_DOUBLE_SINGLE_TAP;
-    else return TD_UNKNOWN; // Any number higher than the maximum state value you return above
-}
+//     if (state->count == 2) return TD_DOUBLE_SINGLE_TAP;
+//     else return TD_UNKNOWN; // Any number higher than the maximum state value you return above
+// }
 
 
-// Handle the possible states for each tapdance keycode you define:
+// // Handle the possible states for each tapdance keycode you define:
 
-void td_btnlayer_finished(qk_tap_dance_state_t *state, void *user_data) {
-    td_state = cur_dance(state);
-    switch (td_state) {
-        case TD_SINGLE_TAP:
-            register_code16(KC_BTN5);
-            break;
-        case TD_SINGLE_HOLD:
-            layer_on(2); // For a layer-tap key, use `layer_on(_MY_LAYER)` here
-            break;
-        case TD_DOUBLE_SINGLE_TAP: // Allow nesting of 2 parens `((` within tapping term
-            tap_code16(KC_BTN5);
-            register_code16(KC_BTN5);
-            break;
-        default:
-            break;
-    }
-}
+// void td_btnlayer_finished(qk_tap_dance_state_t *state, void *user_data) {
+//     td_state = cur_dance(state);
+//     switch (td_state) {
+//         case TD_SINGLE_TAP:
+//             register_code16(KC_BTN5);
+//             break;
+//         case TD_SINGLE_HOLD:
+//             layer_on(2); // For a layer-tap key, use `layer_on(_MY_LAYER)` here
+//             break;
+//         case TD_DOUBLE_SINGLE_TAP: // Allow nesting of 2 parens `((` within tapping term
+//             tap_code16(KC_BTN5);
+//             register_code16(KC_BTN5);
+//             break;
+//         default:
+//             break;
+//     }
+// }
 
-void td_btnlayer_reset(qk_tap_dance_state_t *state, void *user_data) {
-    switch (td_state) {
-        case TD_SINGLE_TAP:
-            unregister_code16(KC_BTN5);
-            break;
-        case TD_SINGLE_HOLD:
-            layer_off(2); // For a layer-tap key, use `layer_off(_MY_LAYER)` here
-            break;
-        case TD_DOUBLE_SINGLE_TAP:
-            unregister_code16(KC_BTN5);
-            break;
-        default:
-            break;
-    }
-}
+// void td_btnlayer_reset(qk_tap_dance_state_t *state, void *user_data) {
+//     switch (td_state) {
+//         case TD_SINGLE_TAP:
+//             unregister_code16(KC_BTN5);
+//             break;
+//         case TD_SINGLE_HOLD:
+//             layer_off(2); // For a layer-tap key, use `layer_off(_MY_LAYER)` here
+//             break;
+//         case TD_DOUBLE_SINGLE_TAP:
+//             unregister_code16(KC_BTN5);
+//             break;
+//         default:
+//             break;
+//     }
+// }
 
-// Define `ACTION_TAP_DANCE_FN_ADVANCED()` for each tapdance keycode, passing in `finished` and `reset` functions
-qk_tap_dance_action_t tap_dance_actions[] = {
-    [BTN5_LAYER] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_btnlayer_finished, td_btnlayer_reset)
-};
+// // Define `ACTION_TAP_DANCE_FN_ADVANCED()` for each tapdance keycode, passing in `finished` and `reset` functions
+// qk_tap_dance_action_t tap_dance_actions[] = {
+//     [BTN5_LAYER] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_btnlayer_finished, td_btnlayer_reset)
+// };
