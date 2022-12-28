@@ -40,19 +40,19 @@
 // td_state_t cur_dance(qk_tap_dance_state_t *state);
 
 // `finished` and `reset` functions for each tapdance keycode
-void td_btnlayer_finished(qk_tap_dance_state_t *state, void *user_data);
-void td_btnlayer_reset(qk_tap_dance_state_t *state, void *user_data);
+// void td_btnlayer_finished(qk_tap_dance_state_t *state, void *user_data);
+// void td_btnlayer_reset(qk_tap_dance_state_t *state, void *user_data);
 
 //Layout: Left button, Scroll click, Right button, Button just right of ball, Button far right of ball
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [0] = LAYOUT( KC_BTN1, DRAG_SCROLL, KC_BTN2, KC_BTN3, KC_BTN5 ),
-    [1] = LAYOUT( KC_BTN1, KC_BTN4, KC_BTN3, KC_BTN2, TD(BTN5_LAYER) ),
-    [2] = LAYOUT( DF(0), DRAG_SCROLL, DF(1), DPI_CONFIG, _______ ),
-    [3] = LAYOUT( _______, _______, _______, _______, _______ ),
-    [4] = LAYOUT( _______, _______, _______, _______, _______ ),
-    [5] = LAYOUT( _______, _______, _______, _______, _______ ),
-    [6] = LAYOUT( _______, _______, _______, _______, _______ ),
-    [7] = LAYOUT( _______, _______, _______, _______, _______ )
+    [0] = LAYOUT( KC_BTN1, DRAG_SCROLL, KC_BTN2, KC_BTN3, KC_BTN4 ),
+    // [1] = LAYOUT( KC_BTN1, KC_BTN4, KC_BTN3, KC_BTN2, TD(BTN5_LAYER) ),
+    // [2] = LAYOUT( DF(0), DRAG_SCROLL, DF(1), DPI_CONFIG, _______ ),
+    // [3] = LAYOUT( _______, _______, _______, _______, _______ ),
+    // [4] = LAYOUT( _______, _______, _______, _______, _______ ),
+    // [5] = LAYOUT( _______, _______, _______, _______, _______ ),
+    // [6] = LAYOUT( _______, _______, _______, _______, _______ ),
+    // [7] = LAYOUT( _______, _______, _______, _______, _______ )
 };
 
 
